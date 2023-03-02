@@ -1,6 +1,6 @@
 # supPlant-ECE-218
 
-[## Project Information](https://github.com/Gaskellj/supPlant_Project_Info.git)
+[Project Information](https://github.com/Gaskellj/supPlant_Project_Info.git)
 
 ## Github Workflow
 
