@@ -1,5 +1,9 @@
 # supPlant-ECE-218
 
+## Project Information
+
+[Milestone 2](https://github.com/Gaskellj/supPlant_Project_Info.git)
+
 ## Github Workflow
 
 1. Feature branches for each person
