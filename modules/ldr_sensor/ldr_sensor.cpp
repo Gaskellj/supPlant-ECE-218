@@ -3,16 +3,15 @@
 #include "arm_book_lib.h"
 
 #include "smart_plant_system.h"
-#include "pc_serial_com.h"
-#include "grow_light.h"
-#include "user_interface.h"
-#include "water_valve.h"
+#include "ldr_sensor.h"
 
 //=====[Declaration of private defines]========================================
 
 //=====[Declaration of private data types]=====================================
 
 //=====[Declaration and initialization of public global objects]===============
+
+AnalogIn ldr(A1);
 
 //=====[Declaration of external public global variables]=======================
 
@@ -24,21 +23,13 @@
 
 //=====[Implementations of public functions]===================================
 
-void smartPlantSystemInit()
-{
-    userInterfaceInit();
-    lightInit();
-    waterValveInit();
-    pcSerialComInit();
-}
+void ldrSensorInit() { }
 
-void smartPlantSystemUpdate()
+void ldrSensorUpdate() { }
+
+float ldrSensorRead()
 {
-    pcSerialComUpdate();
-    userInterfaceDisplayUpdate();
-    //lightUpdate(1);
-    //eventLogUpdate();
-    //delay(SYSTEM_TIME_INCREMENT_MS);
+    return ldr.read();
 }
 
 //=====[Implementations of private functions]==================================
