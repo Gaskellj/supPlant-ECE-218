@@ -36,6 +36,8 @@ void smartPlantSystemUpdate()
 {
     pcSerialComUpdate();
     userInterfaceDisplayUpdate();
+    waterValveUpdate();
+    growLightUpdate();
     //lightUpdate(1);
     //eventLogUpdate();
     //delay(SYSTEM_TIME_INCREMENT_MS);

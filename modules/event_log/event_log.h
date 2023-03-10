@@ -25,6 +25,7 @@ void eventLogUpdate();
 int eventLogNumberOfStoredEvents();
 void eventLogRead( int index, char* str );
 void eventLogWrite( bool currentState, const char* elementName );
+void plantChangeWrite(const char* plantName);
 
 //=====[#include guards - end]=================================================
 

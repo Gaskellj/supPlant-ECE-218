@@ -1,12 +1,14 @@
 //=====[Libraries]=============================================================
+#include <cstring>
+#include <iostream>
+#include <string> 
 
 #include "mbed.h"
 #include "arm_book_lib.h"
 
-#include "grow_light.h"
+#include "plant_selector.h"
 
 #include "smart_plant_system.h"
-#include "ldr_sensor.h"
 #include "event_log.h"
 
 //=====[Declaration of private defines]========================================
@@ -16,66 +18,43 @@
 //=====[Declaration and initialization of public global objects]===============
 
 
-DigitalInOut lightPin(PE_3);
-
-
 //=====[Declaration of external public global variables]=======================
+
 
 //=====[Declaration and initialization of public global variables]=============
 
+string plants[] = { "Azalea", "Blossom", "Olive", "Poppy", "Dracaena" };
+int waterSchedule[] = { 400, 150, 360, 450, 2};
+int lightRequirement[] = {600, 800, 1200, 650, 1440};
+
 //=====[Declaration and initialization of private global variables]============
 
-static bool lightState = OFF;
+int currentIndex = 0;
+
 
 //=====[Declarations (prototypes) of private functions]========================
 
-static void lightUpdate();
 
 //=====[Implementations of public functions]===================================
 
-void lightInit()
+void setCurrentIndex(int Index)
 {
-    lightPin.mode(OpenDrain);
-    lightPin.output();
-    lightPin = LOW;
-    
+    currentIndex = Index;
 }
 
-void offLight()
+char* getPlant()
 {
-    lightPin.output();
-    lightPin = LOW;
-    lightStateWrite(OFF);
-    eventLogWrite(false, "GROWTH_LIGHT");
+    return const_cast<char*>(plants[currentIndex].c_str());
 }
 
-void onLight()
+int getWaterSchedule()
 {
-    lightPin.input();
-    lightStateWrite(ON);
-    eventLogWrite(true, "GROWTH_LIGHT");
+    return (waterSchedule[currentIndex]);
 }
 
-void growLightUpdate()
+int getLightRequirement()
 {
-    if (ldrSensorRead() > 0.2 && !lightState){
-        onLight();
-    } else if (ldrSensorRead() < 0.05 && lightState){
-        offLight();
-    }
+    return (lightRequirement[currentIndex]);
 }
-
-bool lightStateRead()
-{
-    return lightState;
-}
-
-void lightStateWrite(bool state)
-{
-    lightState = state;
-}
-
-
-
 
 //=====[Implementations of private functions]==================================

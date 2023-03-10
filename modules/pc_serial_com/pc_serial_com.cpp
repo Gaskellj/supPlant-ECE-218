@@ -10,6 +10,7 @@
 #include "grow_light.h"
 #include "moisture_sensor.h"
 #include "water_valve.h"
+#include "plant_selector.h"
 
 //=====[Declaration of private defines]========================================
 
@@ -48,6 +49,9 @@ static void commandShowMoistureReading();
 static void commandUpdateLight(int status);
 static void commandOpenWaterValve();
 static void commandCloseWaterValve();
+static void commandPlantWrite();
+static void commandLightWrite();
+static void commandWaterWrite();
 
 //=====[Implementations of public functions]===================================
 
@@ -111,6 +115,9 @@ static void pcSerialComCommandUpdate( char receivedChar )
         case '7': commandUpdateLight(0); break;
         case '8': commandOpenWaterValve(); break;
         case '9': commandCloseWaterValve(); break;
+        case 'P': case 'p': commandPlantWrite(); break;
+        case 'L': case 'l': commandLightWrite(); break;
+        case 'W': case 'w': commandWaterWrite(); break;
         default: availableCommands(); break;
     } 
 }
@@ -126,6 +133,9 @@ static void availableCommands()
     pcSerialComStringWrite( "Press '7' to turn off the light\r\n");
     pcSerialComStringWrite( "Press '8' to open the water valve\r\n");
     pcSerialComStringWrite( "Press '9' to close the water valve\r\n");
+    pcSerialComStringWrite( "Press 'P' or 'p' to get the current plant\r\n");
+    pcSerialComStringWrite( "Press 'L' or 'l' to get the time under light in mins\r\n");
+    pcSerialComStringWrite( "Press 'W' or 'w' to get the time between waters in mins\r\n");
     pcSerialComStringWrite( "\r\n" );
 }
 
@@ -225,5 +235,29 @@ static void commandCloseWaterValve()
 {
     closeValve();
     pcSerialComStringWrite( "Closed valve" );
+    pcSerialComStringWrite("\r\n");
+}
+
+static void commandPlantWrite()
+{
+    char str[100] = "";
+    sprintf ( str, "Current Plant= %s", getPlant() );
+    pcSerialComStringWrite( str );
+    pcSerialComStringWrite("\r\n");
+}
+
+static void commandLightWrite()
+{
+    char str[100] = "";
+    sprintf ( str, "Required Light in Mins= %d", getLightRequirement() );
+    pcSerialComStringWrite( str );
+    pcSerialComStringWrite("\r\n");
+}
+
+static void commandWaterWrite()
+{
+    char str[100] = "";
+    sprintf ( str, "Required Water in Mins= %d", getWaterSchedule() );
+    pcSerialComStringWrite( str );
     pcSerialComStringWrite("\r\n");
 }

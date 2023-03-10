@@ -13,13 +13,17 @@
 #include "smart_plant_system.h"
 #include "display.h"
 #include "pc_serial_com.h"
+#include "plant_selector.h"
+#include "event_log.h"
+#include "water_valve.h"
+#include "grow_light.h"
 
 //=====[Declaration of private defines]========================================
 
 #define DISPLAY_REFRESH_TIME_MS 1000
-#define NUMBER_OF_PLANTS 5
 
 //=====[Declaration of private data types]=====================================
+
 
 //=====[Declaration and initialization of public global objects]===============
 
@@ -35,8 +39,9 @@ InterruptIn confirmButton(PF_9);
 static int currentIndex = 0;
 static bool cyclable = true;
 static bool updated = false;
+static bool locked = false;
 
-string plants[] = { "Azalea", "Blossom", "Olive", "Poppy", "Dracaena" };
+//string plants[] = { "Azalea", "Blossom", "Olive", "Poppy", "Dracaena" };
 
 
 
@@ -65,13 +70,23 @@ void userInterfaceDisplayUpdate()
     if (updated){
         userInterfaceDisplayInit();
 
+        if (locked){
+            const char* string = getPlant();
+            plantChangeWrite(string);
+            lightInit();
+            waterValveInit();
+            locked = false;
+        }
+
         displayCharPositionWrite ( 6,0 );
         
         if (currentIndex > NUMBER_OF_PLANTS){
             currentIndex = 0;
         }
 
-        char* c = const_cast<char*>(plants[currentIndex].c_str());
+        setCurrentIndex(currentIndex);
+
+        char* c = getPlant();
 
         displayStringWrite(c);
 
@@ -97,6 +112,16 @@ static void userInterfaceDisplayInit()
         displayStringWrite( "LOCKED IN" );
     }
 
+    displayCharPositionWrite ( 6,0 );
+
+    setCurrentIndex(currentIndex);
+
+    char* c = getPlant();
+
+    //char* c = const_cast<char*>(plants[currentIndex].c_str());
+
+    displayStringWrite(c);
+
 }
 
 static void cycleButtonCallback()
@@ -109,8 +134,9 @@ static void cycleButtonCallback()
 
 static void confirmButtonCallback()
 {
-
     cyclable = false;
     updated = true;
-
+    locked = true;
+    //char* c = const_cast<char*>(plants[currentIndex].c_str());
+    //plantChangeWrite(c); 
 }

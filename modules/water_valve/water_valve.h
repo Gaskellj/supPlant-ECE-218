@@ -11,6 +11,8 @@
 
 void waterValveInit();
 
+void waterValveUpdate();
+
 void openValve();
 
 void closeValve();

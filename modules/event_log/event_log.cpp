@@ -4,6 +4,8 @@
 #include "arm_book_lib.h"
 
 #include "event_log.h"
+#include "pc_serial_com.h"
+
 
 
 //=====[Declaration of private defines]========================================
@@ -55,27 +57,62 @@ void eventLogRead( int index, char* str )
     strcat( str, "\r\n" );
 }
 
-void eventLogWrite( bool currentState, const char* elementName )
-{
+//void plantChangeWrite (const char* plantName)
+//{
     //char eventAndStateStr[EVENT_LOG_NAME_MAX_LENGTH] = "";
+    //const char* message = "TO ";
 
-    //strcat( eventAndStateStr, elementName );
-    //if ( currentState ) {
-        //strcat( eventAndStateStr, "_ON" );
-    //} else {
-        //strcat( eventAndStateStr, "_OFF" );
-    //}
+    //strcat ( eventAndStateStr, message);
+
+    //strcat ( eventAndStateStr, plantName);
 
     //arrayOfStoredEvents[eventsIndex].seconds = time(NULL);
     //strcpy( arrayOfStoredEvents[eventsIndex].typeOfEvent, eventAndStateStr );
-    //if ( eventsIndex < EVENT_LOG_MAX_STORAGE -1 ) {
-       //eventsIndex++;
+    //if ( eventsIndex < EVENT_LOG_MAX_STORAGE - 1 ) {
+        //eventsIndex++;
     //} else {
         //eventsIndex = 0;
     //}
+//}
 
-    //pcSerialComStringWrite(eventAndStateStr);
-    //pcSerialComStringWrite("\r\n");
+void plantChangeWrite(const char* plantName)
+{
+    char eventAndStateStr[EVENT_LOG_NAME_MAX_LENGTH] = "";
+    const char* string = "NEW PLANT ";
+
+    strcat( eventAndStateStr, string);
+    strcat( eventAndStateStr, plantName);
+
+    arrayOfStoredEvents[eventsIndex].seconds = time(NULL);
+    strcpy( arrayOfStoredEvents[eventsIndex].typeOfEvent, eventAndStateStr );
+    if ( eventsIndex < EVENT_LOG_MAX_STORAGE - 1 ) {
+        eventsIndex++;
+    } else {
+        eventsIndex = 0;
+    }
+}
+
+void eventLogWrite( bool currentState, const char* elementName )
+{
+    char eventAndStateStr[EVENT_LOG_NAME_MAX_LENGTH] = "";
+
+    strcat( eventAndStateStr, elementName );
+    if ( currentState ) {
+        strcat( eventAndStateStr, "_ON" );
+    } else {
+        strcat( eventAndStateStr, "_OFF" );
+    }
+
+    arrayOfStoredEvents[eventsIndex].seconds = time(NULL);
+    strcpy( arrayOfStoredEvents[eventsIndex].typeOfEvent, eventAndStateStr );
+    if ( eventsIndex < EVENT_LOG_MAX_STORAGE - 1 ) {
+        eventsIndex++;
+    } else {
+        eventsIndex = 0;
+    }
+
+    pcSerialComStringWrite(eventAndStateStr);
+    pcSerialComStringWrite("\r\n");
 }
 
 //=====[Implementations of private functions]==================================

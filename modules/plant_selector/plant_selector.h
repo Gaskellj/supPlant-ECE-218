@@ -1,21 +1,26 @@
 //=====[#include guards - begin]===============================================
 
-#ifndef _GROW_LIGHT_H_
-#define _GROW_LIGHT_H_
+#ifndef _PLANT_SELECTOR_
+#define _PLANT_SELECTOR_
+
 
 //=====[Declaration of public defines]=========================================
 
+#define NUMBER_OF_PLANTS 5
+
 //=====[Declaration of public data types]======================================
+
 
 //=====[Declarations (prototypes) of public functions]=========================
 
-void lightInit();
-void onLight();
-void offLight();
-bool lightStateRead();
-void lightStateWrite(bool state);
-void growLightUpdate();
+void setCurrentIndex(int Index);
+
+char* getPlant();
+
+int getWaterSchedule();
+
+int getLightRequirement();
 
 //=====[#include guards - end]=================================================
 
-#endif // _GROW_LIGHT_H_
+#endif // _PLANT_SELECTOR_
