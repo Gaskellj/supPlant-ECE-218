@@ -8,7 +8,7 @@ This project tackles the challenge of caring for a plant whilst on vacation and 
 
 The system will water the plant when the soil is dry based on a watering schedule unique to the plant, and will provide light to the plant if the room is dark and the plant has not recieved enough light in the day.
 
-The user can troubleshoot using the serial monitor where an arry of measurements and events will be be shown to the user upon pressing the respective button. The user can manually water and provide light to the plant and will also aci=tivate the automation feature by pressing 'S' (indicating Start).
+The user can troubleshoot using the serial monitor where an arry of measurements and events will be be shown to the user upon pressing the respective button. The user can manually water and provide light to the plant and will also activate the automation feature by pressing 'S' (indicating Start).
 
 ## Conditions
 
