@@ -28,21 +28,24 @@ The user can troubleshoot using the serial monitor where an arry of measurements
 
 ### Complex conditions
 
-#### - The user turns the light on and off using serial monitor
+- #### The user turns the light on and off using serial monitor
 
 If the user enters '6' on the serial monitor the light will turn on and remain on, an event message will be displayed on the serial monitor. When the user enters '7' on the serial monitor the light will turn off.
 
 NOTE: Due to hardware constraints of the motor controller the light cannot be on at the same time as the valve is open, therefore if the valve is open the light cannot be turned on
 
-#### - The user opens and closes the valve using serial monitor
+
+- #### The user opens and closes the valve using serial monitor
 
 If the user enters '8' on the serial monitor the valve will be opened, an event message will be displayed on the serial monitor, and water will flow through the dispersion head. When the user enters '9' on the serial monitor the valve will close and water will stop flowing.
 
 NOTE: Due to hardware constraints of the motor controller, if the light is on when '8' is entered, the light is turned off and if this is the case the light is turned back on when the watering stops
 
-#### - The user presses 's' on the serial monitor
+
+- #### The user presses 's' on the serial monitor
 
 The automatic plant system is activated and an event message is displayed on the serial monitor to inform the user. 
+
 
 ## Automatic Plant System
 
