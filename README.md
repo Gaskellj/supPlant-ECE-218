@@ -1,6 +1,6 @@
 # supPlant-ECE-218
 
-## Project By: James Gaskell, Asher Zive, Daniel Pacheco
+#### Project By: James Gaskell, Asher Zive, Daniel Pacheco
 
 ## Outline
 
