@@ -49,7 +49,20 @@ The automatic plant system is activated and an event message is displayed on the
 
 ## Automatic Plant System
 
-- Each plant has a hard coded amount of light and water it needs to thrive
-- The watering system uses time increment along with the plant's water requirement to open the valve periodically (for the dracaena test plant this means watering every 2 minutes). The watering lasts 30 seconds 
+Each plant has a hard coded amount of light and water it needs to thrive
 
+#### Auto Watering
 
+The watering system uses time increment along with the plant's water requirement to open the valve periodically (for the dracaena test plant this means watering every 2 minutes). The watering lasts 30 seconds and then the valve closes and water stops flowing. 
+
+The watering only takes place if the soil is dry (currently set to a moisture reading of 0.2) in case the plant does not absorb as much water for any reason or the plant recieves some other water source in the meantime.
+
+NOTE: if the light is currently on (as with the manual method) the light will be switched off when the valve opens and switched back on when the valve closes.
+
+#### Auto Lighting
+
+The lighting system uses the current date and time to check wether the light needs to be turned on or not. Each light has a time under light which keeps track of the time the plant has been exposed to light for the day (whether it be natural or artificial).
+
+The system checks if the time under light and the current time of the day allows enough remaining time to ensure the plant recieves enough natural light if this is not the case, and the room is dark, the artificial light is turned on.
+
+NOTE:
