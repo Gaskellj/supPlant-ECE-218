@@ -61,7 +61,7 @@ NOTE: if the light is currently on (as with the manual method) the light will be
 
 #### Auto Lighting
 
-The lighting system uses the current date and time to check wether the light needs to be turned on or not. Each light has a time under light which keeps track of the time the plant has been exposed to light for the day (whether it be natural or artificial).
+The lighting system uses the current date and time to check whether the light needs to be turned on or not. Each light has a time under light which keeps track of the time the plant has been exposed to light for the day (whether it be natural or artificial).
 
 The system checks if the time under light and the current time of the day allows enough remaining time to ensure the plant recieves enough natural light if this is not the case, and the room is dark (as per the ldr reading), the artificial light is turned on.
 
