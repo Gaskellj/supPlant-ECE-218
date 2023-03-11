@@ -12,7 +12,7 @@ The user can troubleshoot using the serial monitor where an arry of measurements
 
 ## Conditions
 
-#### Simple Conditions
+### Simple Conditions
 
 |Function|Trigger|Behaviour|
 |--------|---------|------------|
@@ -21,13 +21,12 @@ The user can troubleshoot using the serial monitor where an arry of measurements
 |Get light reading|4 on the serial monitor|The current LDR reading is displayed between 0 and 1|
 |Get moisture reading|5 on the serial monitor|The moisture sensor is displayed between 0 and 1|
 |Cycle the current plant|Press the left button (in relation to the display)|A different plant is displayed on the LCD|
-|Lock in the current button|Press the right button (in relation to the display)|The current plant and LOCKED IN is displayed on the LCD|
-|Incorrect Passcode Display|Yes|Yes|
-|Three Attempts|Yes|Yes|
-|System Lockout|Yes|Yes|
-|System Reset|Yes|Yes|
-|View Code|Yes|Yes|
-|Change Code|No|Yes|
+|Lock in the current plant|Press the right button (in relation to the display)|The current plant and LOCKED IN is displayed on the LCD|
+|Get current plant|'p' on the serial monitor|The current plant is displayed|
+|Get time under light|'l' on the serial monitor|The amount of light the plant needs in minutes is displayed|
+|Get water period|'w' on the serial monitor|The time in between waters for the plant in minutes is displayed|
+
+### Complex conditions
 
 #### The user turns the light on and off using serial monitor
 
@@ -40,4 +39,6 @@ NOTE: Due to hardware constraints of the motor controller the light cannot be on
 If the user enters '8' on the serial monitor the valve will be opened and water will flow through the dispersion head. When the user enters '9' on the serial monitor the valve will close and water will stop flowing.
 
 NOTE: Due to hardware constraints of the motor controller, if the light is on when '8' is entered, the light is turned off and if this is the case the light is turned back on when the watering stops
+
+
 
