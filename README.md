@@ -49,7 +49,7 @@ The automatic plant system is activated and an event message is displayed on the
 
 ## Automatic Plant System
 
-Each plant has a hard coded amount of light and water it needs to thrive
+- Each plant has a hard coded amount of light and water it needs to thrive
 
 #### Auto Watering
 
@@ -63,6 +63,6 @@ NOTE: if the light is currently on (as with the manual method) the light will be
 
 The lighting system uses the current date and time to check wether the light needs to be turned on or not. Each light has a time under light which keeps track of the time the plant has been exposed to light for the day (whether it be natural or artificial).
 
-The system checks if the time under light and the current time of the day allows enough remaining time to ensure the plant recieves enough natural light if this is not the case, and the room is dark, the artificial light is turned on.
+The system checks if the time under light and the current time of the day allows enough remaining time to ensure the plant recieves enough natural light if this is not the case, and the room is dark (as per the ldr reading), the artificial light is turned on.
 
-NOTE:
+NOTE: The lamp will not turn on whilst the valve is open (as with the manual method), in which case this is covered as the loop will update the lamp to on after the valve is closed
