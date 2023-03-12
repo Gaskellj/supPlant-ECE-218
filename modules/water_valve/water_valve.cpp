@@ -21,6 +21,7 @@ bool lightShutOff = false;
 
 static void getSystemBlockedTime();
 
+//=====[Implementations of public functions]==================================
 
 // Vartables in the Init so they are set at their original values when the plant is changed
 
@@ -36,13 +37,17 @@ void waterValveInit()
     
 }
 
+// The update function called by the smart_plant_system
+// Opens or closes the valve based on predefined conditions
+// Only runs if the auto system is active
+// After the plant is watered, locks the watering system for amount of time between the waters of the plant
 void waterValveUpdate()
 {
     if (!systemBlocked && !valveOpen && (moistureSensorRead() < 0.2)) {
         openValve();
     } else if (valveOpen){
         valveOpenTime += INCREMENT;
-        if (valveOpenTime >= 370000){
+        if (valveOpenTime >= 370000){ // Hard coded 370000 represents 30 seconds to the system as 370000 cycles takes that time
             closeValve();
         }
     }
@@ -60,6 +65,8 @@ bool getValveStatus()
     return valveOpen;
 }
 
+// Checks if the light had to be shut off
+// If the light did have to be shut off, then it turns on the light after the valve is closed
 void closeValve()
 {
     valveOpen = false;
@@ -74,6 +81,8 @@ void closeValve()
     eventLogWrite(false, "IRRIGATION");
 }
 
+// Turns off the light if it is on
+// Opens the valve
 void openValve()
 {
     if (lightStateRead() == ON){
@@ -85,6 +94,10 @@ void openValve()
     eventLogWrite(true, "IRRIGATION");
 }
 
+//=====[Implementations of private functions]==================================
+
+// Gets the system blocked time by multiplying the plant's water minutes (the time between waters) by a system minute
+// 740000 is hard coded as this is a timed system minute. i.e. the system has 740000 cycles of this code in a minute
 void getSystemBlockedTime()
 {
     int minutes = getWaterSchedule();

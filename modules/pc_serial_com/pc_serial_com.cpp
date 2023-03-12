@@ -238,6 +238,8 @@ static void commandCloseWaterValve()
     closeValve();
 }
 
+// Re initialises the watering and lighting system if the auto system is active
+// Writes a message to the event log
 static void commandSystemToggle()
 {
     bool SystemOn = smartPlantSystemToggle();
@@ -247,6 +249,7 @@ static void commandSystemToggle()
     pcSerialComStringWrite("\r\n");
 }
 
+// Writes the current plant to the event log
 static void commandPlantWrite()
 {
     char str[100] = "";

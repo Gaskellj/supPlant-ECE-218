@@ -29,12 +29,10 @@ char* dateAndTimeRead()
     return ctime(&epochSeconds);    
 }
 
-//int minutesRead()
-//{
-    //char* dateAndTime = dateAndTimeRead();
 
-//}
-
+// Reads the current time from the RTC
+// Takes the part of the string that represents the hours
+// Uses the ascii to derive the value of the characters and returns it
 int hoursRead()
 {
     char* dateAndTime = dateAndTimeRead();
@@ -48,6 +46,9 @@ int hoursRead()
 
 }
 
+// Reads the current time from the RTC
+// Takes the part of the string that represents the minutes
+// Uses the ascii to derive the value of the characters and returns it
 int minutesRead()
 {
     char* dateAndTime = dateAndTimeRead();

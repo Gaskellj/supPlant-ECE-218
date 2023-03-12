@@ -45,7 +45,6 @@ static int prevMinute;
 
 //=====[Declarations (prototypes) of private functions]========================
 
-static void lightUpdate();
 static int retrieveTimeMins();
 static bool checkAutoSystemActive();
 
@@ -78,6 +77,8 @@ void onLight()
     }
 }
 
+// The function that runs some the smatPlantSystem when the auto system is active
+// checks the light sensor reading and the light state to decide wether the light should be on or off
 void growLightUpdate()
 {
     if (checkAutoSystemActive()){
@@ -108,6 +109,12 @@ void manualTurnOnWrite(bool status)
     }
 }
 
+//=====[Implementations of private functions]==================================
+
+
+// retrieves the current time from date_and_time
+// converts the time to minutes
+// increments timeUnderLight which is the total time the plant has recieved light for
 int retrieveTimeMins()
 {
     int hours = hoursRead();
@@ -125,6 +132,9 @@ int retrieveTimeMins()
     return mins;
 }
 
+// Checks if the auto system needs to be activated
+// Calculates if there is enough time in the day for the plant to recieve its light naturally
+// If there is not enough time in the day the automatic system is started so the plant will be lit for the remainder of the day
 static bool checkAutoSystemActive()
 {
     if (retrieveTimeMins() > (1440 - lightRequirement + timeUnderLight)) {
@@ -133,6 +143,3 @@ static bool checkAutoSystemActive()
         return false;
     }
 }
-
-
-//=====[Implementations of private functions]==================================

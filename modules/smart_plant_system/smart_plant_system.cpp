@@ -26,6 +26,7 @@ bool SystemActive = false;
 
 //=====[Implementations of public functions]===================================
 
+// Initialisers taken out into their own method so they can be called independent of the other inits
 void lightAndValveInit()
 {
     lightInit();
@@ -39,6 +40,8 @@ void smartPlantSystemInit()
     lightAndValveInit();
 }
 
+// Program loop
+// Only calls the update functions for light and water valve if the auto system is active
 void smartPlantSystemUpdate()
 {
     pcSerialComUpdate();
@@ -52,6 +55,8 @@ void smartPlantSystemUpdate()
     //delay(SYSTEM_TIME_INCREMENT_MS);
 }
 
+// Toggles wether the automatic system is active
+// This will determine which update functions are called by the code
 bool smartPlantSystemToggle()
 {
     SystemActive = !SystemActive;

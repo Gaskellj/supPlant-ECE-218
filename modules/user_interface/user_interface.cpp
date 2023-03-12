@@ -41,8 +41,6 @@ static bool cyclable = true;
 static bool updated = false;
 static bool locked = false;
 
-//string plants[] = { "Azalea", "Blossom", "Olive", "Poppy", "Dracaena" };
-
 
 
 //=====[Declarations (prototypes) of private functions]========================
@@ -65,6 +63,8 @@ void userInterfaceInit()
 
 }
 
+// Updated the LCD display if a new plant is selected or the last plant is locked in
+// If a plant is locked in the initialiser functions are called for the water valve and light
 void userInterfaceDisplayUpdate()
 {
     if (updated){
@@ -97,6 +97,9 @@ void userInterfaceDisplayUpdate()
 
 //=====[Implementations of private functions]==================================
 
+// Displays the plant
+// Informs the user of how they can cycle the plant
+// If the plant is locked in then displays locked in
 static void userInterfaceDisplayInit()
 {
     displayInit();
@@ -118,12 +121,12 @@ static void userInterfaceDisplayInit()
 
     char* c = getPlant();
 
-    //char* c = const_cast<char*>(plants[currentIndex].c_str());
-
     displayStringWrite(c);
 
 }
 
+// Interrupt for the cycle button to ensure it can be pressed at any time in the system running
+// Increments the current index in the plant array so the next plant can be displayed or used
 static void cycleButtonCallback()
 {
     if (cyclable) {
@@ -132,11 +135,11 @@ static void cycleButtonCallback()
     }
 }
 
+// Interrupt for the confirm button to ensure it can be pressed at any time in the system running
+// Makes cyclable and locked false and true resepctively so the system knows if a plant has been selected
 static void confirmButtonCallback()
 {
     cyclable = false;
     updated = true;
     locked = true;
-    //char* c = const_cast<char*>(plants[currentIndex].c_str());
-    //plantChangeWrite(c); 
 }

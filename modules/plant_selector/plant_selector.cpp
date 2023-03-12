@@ -24,8 +24,8 @@
 //=====[Declaration and initialization of public global variables]=============
 
 string plants[] = { "Azalea", "Blossom", "Olive", "Poppy", "Dracaena" };
-float waterSchedule[] = { 400, 150, 360, 450, 2};
-int lightRequirement[] = {600, 800, 1200, 650, 1440};
+float waterSchedule[] = { 400, 150, 360, 450, 2}; // These are the times in minutes between waters for theplants
+int lightRequirement[] = {600, 800, 1200, 650, 1440}; //These are the times in minutes that the plants need light for
 
 //=====[Declaration and initialization of private global variables]============
 
@@ -36,6 +36,8 @@ int currentIndex = 0;
 
 
 //=====[Implementations of public functions]===================================
+
+// Getter methods to retrieve the information about the current plant selected
 
 void setCurrentIndex(int Index)
 {
