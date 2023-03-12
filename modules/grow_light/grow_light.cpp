@@ -6,7 +6,6 @@
 
 #include "grow_light.h"
 
-#include "smart_plant_system.h"
 #include "ldr_sensor.h"
 #include "event_log.h"
 #include "water_valve.h"
