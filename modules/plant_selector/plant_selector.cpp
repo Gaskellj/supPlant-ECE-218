@@ -22,7 +22,7 @@
 
 string plants[] = { "Azalea", "Blossom", "Olive", "Poppy", "Dracaena" };
 float waterSchedule[] = { 400, 150, 360, 450, 2}; // These are the times in minutes between waters for theplants
-int lightRequirement[] = {600, 800, 1200, 650, 1430}; //These are the times in minutes that the plants need light for
+int lightRequirement[] = {600, 800, 1200, 650, 1439}; //These are the times in minutes that the plants need light for
 
 //=====[Declaration and initialization of private global variables]============
 
